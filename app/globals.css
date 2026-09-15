@@ -1,26 +1,302 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   eGoverna — Design System
+   Cores extraídas diretamente dos arquivos oficiais da marca em /public/logos
+   Amarelo #FFCC08 · Azul-violeta #312F81 · Preto #000000
+   ========================================================================== */
+
+@theme {
+  /* Azul institucional — derivado do #312F81 da logo oficial */
+  --color-brand-50: #eef0fb;
+  --color-brand-100: #dcdff6;
+  --color-brand-200: #bcc0ed;
+  --color-brand-300: #9399e0;
+  --color-brand-400: #6b71cf;
+  --color-brand-500: #4b4fb4;
+  --color-brand-600: #3b3a96;
+  --color-brand-700: #312f81; /* cor oficial da marca */
+  --color-brand-800: #262568;
+  --color-brand-900: #1c1b4d;
+  --color-brand-950: #101034; /* azul profundo */
+  --color-brand-1000: #0a0a24;
+
+  /* Amarelo eGoverna — destaque pontual */
+  --color-accent-300: #ffe27a;
+  --color-accent-400: #ffd642;
+  --color-accent-500: #ffcc08; /* cor oficial da marca */
+  --color-accent-600: #e0b200;
+
+  /* Neutros */
+  --color-ink-900: #0c0d12;
+  --color-ink-800: #16181f;
+  --color-ink-700: #242732;
+  --color-ink-600: #3c4051;
+  --color-ink-500: #5a5f74;
+  /* ink-400 é o tom mais claro admitido em TEXTO: 4.96:1 sobre off-white (AA). */
+  --color-ink-400: #686d82;
+  /* ink-300 destina-se a bordas, ícones decorativos e placeholders — nunca a
+     texto que precise ser lido (não atinge 4.5:1). */
+  --color-ink-300: #a9adbe;
+  --color-ink-200: #d2d5e0;
+  --color-ink-100: #e7e9f0;
+  --color-ink-50: #f3f4f8;
+  --color-paper: #fbfbfd;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+
+  --radius-card: 20px;
+
+  /* Curvas de animação */
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --shadow-soft: 0 1px 2px rgb(16 16 52 / 0.04), 0 8px 24px -12px rgb(16 16 52 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(16 16 52 / 0.05), 0 18px 40px -18px rgb(16 16 52 / 0.22);
+  --shadow-panel: 0 30px 80px -40px rgb(16 16 52 / 0.35);
+
+  /* Altura de botão usada nos CTAs principais */
+  --spacing-13: 3.25rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    border-color: var(--color-ink-100);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* compensa o header sticky nas âncoras */
+    scroll-padding-top: 88px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: #ffffff;
+    color: var(--color-ink-800);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headlines com tracking compacto e equilíbrio de linhas */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Focus visível e consistente em todo o site (WCAG AA) */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .on-dark :focus-visible,
+  .on-dark :focus-visible * {
+    outline-color: var(--color-accent-500);
+  }
+
+  ::selection {
+    background: var(--color-brand-700);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* Container padrão — grid de 1280px com padding lateral responsivo */
+  .shell {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 40px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .shell {
+      padding-inline: 48px;
+    }
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* Ponto amarelo — detalhe recorrente da identidade */
+  .eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-accent-500);
+    flex: none;
+  }
+
+  /* Malha técnica sutil usada em seções escuras */
+  .grid-lines {
+    background-image: linear-gradient(
+        to right,
+        rgb(255 255 255 / 0.055) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.055) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .grid-lines-light {
+    background-image: linear-gradient(
+        to right,
+        rgb(16 16 52 / 0.045) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgb(16 16 52 / 0.045) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Reveal on scroll — progressive enhancement:
+     sem JS ou com reduced-motion o conteúdo aparece normalmente */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s var(--ease-brand),
+      transform 0.7s var(--ease-brand);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hide scrollbar em trilhos horizontais (chips de módulos no mobile) */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Tipografia das páginas institucionais de texto (política, termos) */
+@layer components {
+  .prose-egoverna h2 {
+    margin-top: 2.75rem;
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: var(--color-ink-900);
+  }
+
+  .prose-egoverna h2:first-child {
+    margin-top: 0;
+  }
+
+  .prose-egoverna h3 {
+    margin-top: 2rem;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-ink-900);
+  }
+
+  .prose-egoverna p {
+    margin-top: 1rem;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-ink-500);
+  }
+
+  .prose-egoverna ul {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.625rem;
+  }
+
+  .prose-egoverna li {
+    position: relative;
+    padding-left: 1.375rem;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-ink-500);
+  }
+
+  .prose-egoverna li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-accent-500);
+  }
+
+  .prose-egoverna a {
+    font-weight: 600;
+    color: var(--color-brand-700);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose-egoverna strong {
+    font-weight: 700;
+    color: var(--color-ink-800);
+  }
 }
