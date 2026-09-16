@@ -1,16 +1,13 @@
-"use server";
-
 import { ufs } from "@/lib/site";
 
-export type ContactState = {
-  status: "idle" | "success" | "error";
-  message?: string;
-  errors?: Partial<Record<Field, string>>;
-  /** Devolve os valores para reidratar o formulário em caso de erro. */
-  values?: Partial<Record<Field, string>>;
-};
+/**
+ * Validação do formulário de contato.
+ *
+ * Roda no navegador: o site é exportado como HTML estático, sem servidor que
+ * pudesse processar uma Server Action. As regras são as mesmas de antes.
+ */
 
-type Field =
+export type ContactField =
   | "nome"
   | "email"
   | "telefone"
@@ -20,15 +17,20 @@ type Field =
   | "mensagem"
   | "consentimento";
 
+export type ContactState = {
+  status: "idle" | "success" | "error";
+  message?: string;
+  errors?: Partial<Record<ContactField, string>>;
+  /** Devolve os valores para reidratar o formulário e montar os links. */
+  values?: Partial<Record<ContactField, string>>;
+};
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 /** Aceita (51) 99549-5740, 51995495740, +55 51 99549-5740 etc. */
 const PHONE_DIGITS = /^\d{10,13}$/;
 
-export async function submitContact(
-  _prev: ContactState,
-  formData: FormData,
-): Promise<ContactState> {
-  const read = (key: Field) => String(formData.get(key) ?? "").trim();
+export function validateContact(formData: FormData): ContactState {
+  const read = (key: ContactField) => String(formData.get(key) ?? "").trim();
 
   const values = {
     nome: read("nome"),
@@ -40,14 +42,13 @@ export async function submitContact(
     mensagem: read("mensagem"),
   };
 
-  // Honeypot: campo invisível que apenas bots preenchem.
+  // Honeypot: campo invisível que apenas bots preenchem. Responde como sucesso
+  // para não sinalizar a proteção — sem valores, nenhum link é montado.
   if (String(formData.get("website") ?? "").length > 0) {
-    // Responde como sucesso para não sinalizar a proteção ao bot — sem valores,
-    // para que nenhum link de WhatsApp ou e-mail seja montado.
     return { status: "success", message: "Solicitação enviada." };
   }
 
-  const errors: Partial<Record<Field, string>> = {};
+  const errors: Partial<Record<ContactField, string>> = {};
 
   if (values.nome.length < 3) errors.nome = "Informe seu nome completo.";
   if (!EMAIL_RE.test(values.email)) errors.email = "Informe um e-mail válido.";
@@ -82,41 +83,10 @@ export async function submitContact(
     };
   }
 
-  const payload = {
-    ...values,
-    origem: "site-egoverna",
-    enviadoEm: new Date().toISOString(),
-  };
-
-  const webhook = process.env.CONTACT_WEBHOOK_URL;
-
-  if (webhook) {
-    try {
-      const response = await fetch(webhook, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) throw new Error(`Webhook respondeu ${response.status}`);
-    } catch (error) {
-      console.error("[contato] Falha ao encaminhar solicitação:", error);
-      return {
-        status: "error",
-        message:
-          "Não foi possível enviar agora. Tente novamente ou fale conosco pelo WhatsApp.",
-        values,
-      };
-    }
-  } else {
-    // Sem webhook configurado, a solicitação fica registrada no log do servidor.
-    console.info("[contato] Nova solicitação de demonstração:", payload);
-  }
-
   return {
     status: "success",
     message:
       "Solicitação enviada. Nossa equipe entrará em contato para agendar a demonstração.",
-    // Os valores voltam para o cliente montar a mensagem do WhatsApp e do e-mail.
     values,
   };
 }

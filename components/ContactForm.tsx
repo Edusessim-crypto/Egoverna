@@ -1,7 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useId, useRef, useState } from "react";
-import { useFormStatus } from "react-dom";
+import { useEffect, useId, useRef, useState } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -10,7 +9,7 @@ import {
   MessageCircle,
   Mail,
 } from "lucide-react";
-import { submitContact, type ContactState } from "@/app/actions/contact";
+import { validateContact, type ContactState } from "@/lib/contact";
 import {
   ufs,
   site,
@@ -25,8 +24,7 @@ const initialState: ContactState = { status: "idle" };
 const fieldBase =
   "h-12 w-full rounded-xl border bg-white px-4 text-[0.9375rem] text-ink-800 outline-none transition-colors duration-200 placeholder:text-ink-300 focus:border-brand-600 focus:ring-4 focus:ring-brand-700/10";
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
+function SubmitButton({ pending }: { pending: boolean }) {
   return (
     <button
       type="submit"
@@ -52,11 +50,21 @@ function SubmitButton() {
 }
 
 export function ContactForm() {
-  const [state, formAction] = useActionState(submitContact, initialState);
+  const [state, setState] = useState<ContactState>(initialState);
+  const [pending, setPending] = useState(false);
   const [startedAt] = useState(() => Date.now());
   const startedRef = useRef(false);
   const uid = useId();
   const statusRef = useRef<HTMLDivElement>(null);
+
+  // Sem servidor no site estático: a validação roda aqui mesmo.
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setPending(true);
+    const result = validateContact(new FormData(event.currentTarget));
+    setState(result);
+    setPending(false);
+  }
 
   // Dispara form_start uma única vez, na primeira interação real.
   function handleFirstInteraction() {
@@ -160,7 +168,7 @@ export function ContactForm() {
 
   return (
     <form
-      action={formAction}
+      onSubmit={handleSubmit}
       onFocusCapture={handleFirstInteraction}
       noValidate
       className="rounded-[28px] border border-ink-100 bg-white p-7 shadow-[0_24px_60px_-42px_rgba(16,16,52,0.42)] sm:p-9"
@@ -333,7 +341,7 @@ export function ContactForm() {
       </div>
 
       <div className="mt-8">
-        <SubmitButton />
+        <SubmitButton pending={pending} />
       </div>
     </form>
   );
