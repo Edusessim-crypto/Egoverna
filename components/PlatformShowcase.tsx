@@ -7,7 +7,7 @@ import { platformHighlights } from "@/lib/site";
 
 export function PlatformShowcase() {
   return (
-    <section className="relative overflow-hidden bg-ink-50/60 py-24 md:py-32">
+    <section className="relative overflow-hidden bg-ink-50/60 pb-24 pt-[3.625rem] md:pb-32 md:pt-[4.8125rem]">
       {/* Malha técnica discreta no fundo */}
       <div
         aria-hidden="true"

@@ -9,10 +9,10 @@ import { Reveal } from "@/components/ui/Reveal";
  */
 export function IsaSection() {
   return (
-    <section id="isa" className="relative bg-white pt-24 md:pt-32">
+    <section id="isa" className="relative bg-white pt-[3.625rem] md:pt-[4.8125rem]">
       <div className="shell">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[32px] bg-brand-700 px-8 pb-14 pt-14 sm:px-12 md:px-16 md:pb-0 md:pt-20">
+          <div className="relative overflow-hidden rounded-[32px] bg-brand-700 px-8 pb-14 pt-14 sm:px-12 md:px-16 md:pb-0 md:pt-16">
             {/* Profundidade e linguagem gráfica da marca */}
             <div
               aria-hidden="true"
@@ -64,8 +64,8 @@ export function IsaSection() {
                   alt="ISA, a assistente de inteligência artificial do eGoverna"
                   width={504}
                   height={760}
-                  sizes="(max-width: 768px) 260px, 380px"
-                  className="relative block h-[300px] w-auto drop-shadow-[0_24px_40px_rgba(0,0,0,0.35)] sm:h-[340px] md:h-[400px] lg:h-[440px]"
+                  sizes="(max-width: 768px) 290px, 380px"
+                  className="relative block h-[340px] w-auto drop-shadow-[0_24px_40px_rgba(0,0,0,0.35)] sm:h-[400px] md:h-[480px] lg:h-[540px]"
                 />
               </div>
             </div>
