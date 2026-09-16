@@ -18,8 +18,8 @@ export default function Home() {
       <main id="conteudo" className="flex-1">
         <Hero />
         <Ecosystem />
-        <PlatformShowcase />
         <IsaSection />
+        <PlatformShowcase />
         <ModuleNavigator />
         <ProductShowcase />
         <BenefitsSection />
