@@ -2,9 +2,22 @@
 
 import { useActionState, useEffect, useId, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
-import { ArrowRight, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+  MessageCircle,
+  Mail,
+} from "lucide-react";
 import { submitContact, type ContactState } from "@/app/actions/contact";
-import { ufs } from "@/lib/site";
+import {
+  ufs,
+  site,
+  contactWhatsAppUrl,
+  contactGmailUrl,
+  contactMailtoUrl,
+} from "@/lib/site";
 import { track } from "@/lib/analytics";
 
 const initialState: ContactState = { status: "idle" };
@@ -57,6 +70,15 @@ export function ContactForm() {
     if (state.status !== "idle") statusRef.current?.focus();
   }, [state.status]);
 
+  // Ao enviar com sucesso, o WhatsApp abre automaticamente com as respostas.
+  // O e-mail fica como segundo botão: navegadores bloqueiam duas abas de uma vez.
+  useEffect(() => {
+    if (state.status !== "success" || !state.values?.nome) return;
+    const url = contactWhatsAppUrl(state.values);
+    const win = window.open(url, "_blank", "noopener,noreferrer");
+    track("whatsapp_click", { source: "form", blocked: win ? "no" : "yes" });
+  }, [state.status, state.values]);
+
   const err = state.errors ?? {};
   const val = state.values ?? {};
 
@@ -65,6 +87,7 @@ export function ContactForm() {
     err[field] ? "border-red-400" : "border-ink-200";
 
   if (state.status === "success") {
+    const values = state.values;
     return (
       <div
         ref={statusRef}
@@ -81,6 +104,56 @@ export function ContactForm() {
         <p className="mx-auto mt-3 max-w-[30rem] text-[0.9375rem] leading-relaxed text-ink-500">
           {state.message}
         </p>
+
+        {values?.nome ? (
+          <div className="mt-8 border-t border-ink-100 pt-7">
+            <p className="mx-auto max-w-[30rem] text-[0.875rem] leading-relaxed text-ink-500">
+              Suas respostas já foram organizadas em uma mensagem. Envie também
+              por um destes canais para falar com a equipe agora mesmo:
+            </p>
+
+            <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row">
+              <a
+                href={contactWhatsAppUrl(values)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  track("whatsapp_click", { source: "form_success" })
+                }
+                className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-brand-700 px-6 text-[0.9375rem] font-semibold text-white transition-colors duration-200 hover:bg-brand-800"
+              >
+                <MessageCircle
+                  aria-hidden="true"
+                  className="size-[18px]"
+                  strokeWidth={1.9}
+                />
+                Enviar no WhatsApp
+              </a>
+
+              <a
+                href={contactGmailUrl(values)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track("email_click", { source: "form_success" })}
+                className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full border border-ink-200 px-6 text-[0.9375rem] font-semibold text-ink-800 transition-colors duration-200 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
+              >
+                <Mail aria-hidden="true" className="size-[18px]" strokeWidth={1.9} />
+                Enviar por e-mail
+              </a>
+            </div>
+
+            <p className="mt-4 text-[0.8125rem] text-ink-400">
+              Prefere seu aplicativo de e-mail?{" "}
+              <a
+                href={contactMailtoUrl(values)}
+                onClick={() => track("email_click", { source: "form_mailto" })}
+                className="font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-800"
+              >
+                Abrir com {site.email}
+              </a>
+            </p>
+          </div>
+        ) : null}
       </div>
     );
   }

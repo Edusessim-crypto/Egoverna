@@ -8,11 +8,6 @@ const solutionLinks = [
   { label: "A plataforma", href: "#modulos" },
   { label: "Produtos especializados", href: "#modulos" },
   { label: "Por que eGoverna", href: "#beneficios" },
-];
-
-const companyLinks = [
-  { label: "Sobre nós", href: "#sobre" },
-  { label: "O que nos move", href: "#sobre" },
   { label: "Contato", href: "#contato" },
   { label: "Help Desk", href: site.helpDesk },
 ];
@@ -33,9 +28,9 @@ export function Footer() {
               className="h-[30px] w-auto object-contain object-left"
             />
             <p className="mt-6 max-w-[26rem] text-[0.9375rem] leading-relaxed text-white/60">
-              Ecossistema inteligente para a gestão pública. A eGoverna conecta
-              diferentes áreas da administração municipal em uma única
-              plataforma digital.
+              Ecossistema inteligente para a gestão pública. O eGoverna é um
+              software que conecta diferentes áreas da administração municipal
+              em uma única plataforma digital.
             </p>
 
             <WhatsAppLink
@@ -52,7 +47,7 @@ export function Footer() {
           </div>
 
           {/* Colunas de navegação */}
-          <div className="grid gap-10 sm:grid-cols-3">
+          <div className="grid gap-10 sm:grid-cols-2">
             <FooterColumn title="Soluções" links={solutionLinks} />
 
             <nav aria-labelledby="footer-modulos">
@@ -84,7 +79,6 @@ export function Footer() {
               </ul>
             </nav>
 
-            <FooterColumn title="Empresa" links={companyLinks} />
           </div>
         </div>
 

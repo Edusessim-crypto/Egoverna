@@ -5,7 +5,7 @@ import { site, whatsappUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Política de Privacidade",
   description:
-    "Como a eGoverna coleta, utiliza e protege os dados pessoais informados através deste site, em conformidade com a LGPD.",
+    "Como o eGoverna coleta, utiliza e protege os dados pessoais informados através deste site, em conformidade com a LGPD.",
   alternates: { canonical: "/politica-de-privacidade" },
   robots: { index: true, follow: true },
 };

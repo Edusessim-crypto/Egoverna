@@ -11,12 +11,12 @@ export function AboutSection() {
           <div>
             <SectionHeading
               eyebrow="Sobre nós"
-              title="Mais que um sistema, uma parceira da gestão pública."
+              title="Mais que um sistema, um parceiro da gestão pública."
               text={
                 <>
                   <span className="block font-medium text-ink-700">
-                    A eGoverna desenvolve tecnologia voltada às necessidades da
-                    administração municipal, aproximando gestão, servidores e
+                    O eGoverna é um software desenvolvido para as necessidades
+                    da administração municipal, aproximando gestão, servidores e
                     cidadãos através de soluções integradas.
                   </span>
                   <span className="mt-4 block">
@@ -38,7 +38,7 @@ export function AboutSection() {
               />
               <Image
                 src="/images/equipe-egoverna.webp"
-                alt="Profissionais da eGoverna com uniforme da empresa"
+                alt="Equipe eGoverna uniformizada"
                 width={1200}
                 height={1147}
                 sizes="(max-width: 1024px) 88vw, 520px"

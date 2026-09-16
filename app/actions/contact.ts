@@ -42,7 +42,8 @@ export async function submitContact(
 
   // Honeypot: campo invisível que apenas bots preenchem.
   if (String(formData.get("website") ?? "").length > 0) {
-    // Responde como sucesso para não sinalizar a proteção ao bot.
+    // Responde como sucesso para não sinalizar a proteção ao bot — sem valores,
+    // para que nenhum link de WhatsApp ou e-mail seja montado.
     return { status: "success", message: "Solicitação enviada." };
   }
 
@@ -115,5 +116,7 @@ export async function submitContact(
     status: "success",
     message:
       "Solicitação enviada. Nossa equipe entrará em contato para agendar a demonstração.",
+    // Os valores voltam para o cliente montar a mensagem do WhatsApp e do e-mail.
+    values,
   };
 }

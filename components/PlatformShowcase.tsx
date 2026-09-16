@@ -23,11 +23,14 @@ export function PlatformShowcase() {
                 aria-hidden="true"
                 className="absolute -inset-6 -z-10 rounded-[40px] bg-[radial-gradient(60%_60%_at_40%_45%,rgba(49,47,129,0.12),transparent_72%)]"
               />
+              {/* Mockup oficial com a tela real do sistema já composta na
+                  imagem — o notebook exibe o print do eGoverna em uso e o
+                  celular permanece como no material original da marca. */}
               <Image
-                src="/images/sistema-egoverna.webp"
-                alt="Sistema eGoverna em notebook e smartphone, exibindo o painel de gestão de recursos humanos"
-                width={1200}
-                height={968}
+                src="/images/sistema-egoverna-real.png"
+                alt="Sistema eGoverna em notebook e smartphone, com o menu de módulos da administração municipal"
+                width={1198}
+                height={956}
                 sizes="(max-width: 1024px) 94vw, 640px"
                 className="h-auto w-full drop-shadow-[0_36px_60px_rgba(16,16,52,0.18)] lg:max-w-none lg:w-[112%] lg:-ml-[6%]"
               />
@@ -38,7 +41,7 @@ export function PlatformShowcase() {
             <SectionHeading
               eyebrow="A plataforma"
               title="Transforme os desafios administrativos em eficiência real."
-              text="A eGoverna entrega tecnologia desenvolvida para os desafios reais da gestão pública. Mais do que sistemas, oferecemos um ecossistema de soluções, implantação, suporte e evolução contínua."
+              text="O eGoverna é um software desenvolvido para os desafios reais da gestão pública. Mais do que sistemas, oferecemos um ecossistema de soluções, implantação, suporte e evolução contínua."
             />
 
             <Reveal delay={200}>

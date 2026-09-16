@@ -14,6 +14,7 @@ import {
   Database,
   Map as MapIcon,
   Globe,
+  BrainCircuit,
   ArrowRight,
   Sparkles,
   type LucideIcon,
@@ -34,6 +35,7 @@ const icons: Record<ModuleIconName, LucideIcon> = {
   Database,
   Map: MapIcon,
   Globe,
+  BrainCircuit,
 };
 
 export function ModuleNavigator() {

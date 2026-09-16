@@ -1,5 +1,5 @@
 /**
- * Dados institucionais da eGoverna.
+ * Dados institucionais do eGoverna.
  * Todo o conteúdo aqui vem do site oficial (egoverna.com.br) ou do briefing.
  * Nenhum número, métrica, cliente ou contato foi inventado.
  */
@@ -11,15 +11,17 @@ export const site = {
   url: "https://egoverna.com.br",
   tagline: "Ecossistema inteligente para a gestão pública",
   description:
-    "A eGoverna conecta finanças, tributos, educação, saúde, RH e serviços ao cidadão em um único ecossistema digital para a administração municipal.",
+    "O eGoverna é um software que conecta finanças, tributos, educação, saúde, RH e serviços ao cidadão em um único ecossistema digital para a administração municipal.",
   /** Número oficial extraído do site atual (botão de WhatsApp). */
   whatsapp: {
     e164: "5551995495740",
     display: "+55 51 99549-5740",
     message:
-      "Olá, vim através do site da eGoverna e gostaria de mais informações.",
+      "Olá, vim através do site do eGoverna e gostaria de mais informações.",
   },
   helpDesk: "https://egoverna.com.br/",
+  /** Caixa que recebe as solicitações do formulário. */
+  email: "comercial@egoverna.com.br",
 } as const;
 
 export const whatsappUrl = `https://wa.me/${site.whatsapp.e164}?text=${encodeURIComponent(
@@ -34,7 +36,7 @@ export const navLinks = [
   { label: "Soluções", href: "#ecossistema" },
   { label: "Módulos", href: "#modulos" },
   { label: "Por que eGoverna", href: "#beneficios" },
-  { label: "Empresa", href: "#sobre" },
+  { label: "Sobre", href: "#sobre" },
   { label: "Contato", href: "#contato" },
 ] as const;
 
@@ -54,7 +56,8 @@ export type ModuleIconName =
   | "ChartNoAxesCombined"
   | "Database"
   | "Map"
-  | "Globe";
+  | "Globe"
+  | "BrainCircuit";
 
 export type SiteModule = {
   id: string;
@@ -72,7 +75,7 @@ export const modules: SiteModule[] = [
     icon: "Landmark",
     headline: "Gestão tributária inteligente para municípios modernos.",
     description:
-      "O módulo Tributário da eGoverna oferece controle das receitas municipais, auxiliando na fiscalização, no atendimento ao contribuinte e na gestão da arrecadação.",
+      "O módulo Tributário do eGoverna oferece controle das receitas municipais, auxiliando na fiscalização, no atendimento ao contribuinte e na gestão da arrecadação.",
     features: [
       "Cadastro imobiliário e econômico",
       "Lançamento e arrecadação",
@@ -235,6 +238,20 @@ export const modules: SiteModule[] = [
       "Experiência do cidadão",
     ],
   },
+  {
+    id: "inteligencia-artificial",
+    name: "Inteligência Artificial",
+    icon: "BrainCircuit",
+    headline: "Inteligência artificial aplicada à rotina da gestão pública.",
+    description:
+      "Recursos de inteligência artificial que apoiam servidores e gestores na análise de informações, na automação de tarefas repetitivas e no atendimento ao cidadão.",
+    features: [
+      "Automação de rotinas",
+      "Análise inteligente de dados",
+      "Apoio ao atendimento",
+      "Busca assistida por IA",
+    ],
+  },
 ];
 
 export const moduleResult = {
@@ -281,6 +298,7 @@ export const platformHighlights = [
   "Soluções escaláveis",
   "Atualizações contínuas",
   "Integração entre módulos",
+  "Migração de dados com segurança",
 ] as const;
 
 /* -------------------------------------------------------------------------- */
@@ -288,6 +306,21 @@ export const platformHighlights = [
 /* -------------------------------------------------------------------------- */
 
 export const products = [
+  {
+    id: "egoverna",
+    name: "eGoverna",
+    kicker: "Plataforma de gestão pública",
+    headline: "O software que integra toda a administração municipal.",
+    text: "O eGoverna reúne em um único sistema os módulos de finanças, tributos, RH, educação, saúde, patrimônio, dados e serviços ao cidadão, com informações conectadas entre todas as áreas.",
+    bullets: [
+      "Módulos integrados",
+      "Acesso web e mobile",
+      "Dados centralizados",
+      "Suporte e evolução contínua",
+    ],
+    icon: "Layers",
+    appIcon: "/images/apps/egoverna.svg",
+  },
   {
     id: "einventario",
     name: "eInventário",
@@ -301,6 +334,7 @@ export const products = [
       "Integração com o módulo patrimonial",
     ],
     icon: "ScanLine",
+    appIcon: "/images/apps/einventario.png",
   },
   {
     id: "sdi",
@@ -315,6 +349,7 @@ export const products = [
       "Integração entre sistemas",
     ],
     icon: "Database",
+    appIcon: "/images/apps/sdi.png",
   },
 ] as const;
 
@@ -381,6 +416,78 @@ export const values = [
 /* -------------------------------------------------------------------------- */
 /*                                  Formulário                                */
 /* -------------------------------------------------------------------------- */
+
+/** Campos do formulário, na ordem em que aparecem na mensagem gerada. */
+export type ContactValues = {
+  nome: string;
+  email: string;
+  telefone: string;
+  estado: string;
+  cidade: string;
+  cargo: string;
+  mensagem: string;
+};
+
+const contactLabels: [keyof ContactValues, string][] = [
+  ["nome", "Nome"],
+  ["email", "E-mail"],
+  ["telefone", "Telefone"],
+  ["cargo", "Cargo"],
+  ["cidade", "Cidade"],
+  ["estado", "Estado"],
+  ["mensagem", "Mensagem"],
+];
+
+/**
+ * Monta, a partir das respostas do formulário, a mensagem única enviada tanto
+ * ao WhatsApp quanto ao e-mail — assim os dois canais recebem o mesmo conteúdo.
+ */
+export function buildContactMessage(values: Partial<ContactValues>) {
+  const linhas = contactLabels
+    .filter(([key]) => (values[key] ?? "").trim().length > 0)
+    .map(([key, label]) => `${label}: ${values[key]!.trim()}`);
+
+  const corpo = [
+    "Nova solicitação de demonstração — site eGoverna",
+    "",
+    ...linhas,
+  ].join("\n");
+
+  const assunto = `Solicitação de demonstração — ${
+    values.cidade?.trim() || "site eGoverna"
+  }${values.estado?.trim() ? `/${values.estado.trim()}` : ""}`;
+
+  return { assunto, corpo };
+}
+
+/** Link do WhatsApp com as respostas do formulário já preenchidas. */
+export function contactWhatsAppUrl(values: Partial<ContactValues>) {
+  const { corpo } = buildContactMessage(values);
+  return `https://wa.me/${site.whatsapp.e164}?text=${encodeURIComponent(corpo)}`;
+}
+
+/**
+ * Link de e-mail com as respostas. Usa o compose do Gmail, que funciona para
+ * quem está logado no navegador; o `mailto:` fica como alternativa no botão
+ * secundário, cobrindo quem usa cliente de e-mail instalado.
+ */
+export function contactGmailUrl(values: Partial<ContactValues>) {
+  const { assunto, corpo } = buildContactMessage(values);
+  const params = new URLSearchParams({
+    view: "cm",
+    fs: "1",
+    to: site.email,
+    su: assunto,
+    body: corpo,
+  });
+  return `https://mail.google.com/mail/?${params.toString()}`;
+}
+
+export function contactMailtoUrl(values: Partial<ContactValues>) {
+  const { assunto, corpo } = buildContactMessage(values);
+  const params = new URLSearchParams({ subject: assunto, body: corpo });
+  return `mailto:${site.email}?${params.toString()}`;
+}
 
 export const ufs = [
   "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",

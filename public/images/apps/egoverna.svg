@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="eGoverna">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfbfc"/>
+      <stop offset="0.55" stop-color="#eeeff2"/>
+      <stop offset="1" stop-color="#e2e4e9"/>
+    </linearGradient>
+    <clipPath id="frame"><rect width="512" height="512"/></clipPath>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- Ondas suaves do padrão dos ícones dos aplicativos -->
+  <g clip-path="url(#frame)" fill="none" stroke="#ffffff" stroke-width="26" opacity="0.85">
+    <path d="M-60 132 C 110 52, 300 78, 572 6"/>
+    <path d="M-60 214 C 120 150, 320 172, 572 96"/>
+    <path d="M-60 404 C 130 340, 330 364, 572 292"/>
+    <path d="M-60 486 C 140 428, 340 452, 572 386"/>
+  </g>
+  <g clip-path="url(#frame)" fill="none" stroke="#d6d8df" stroke-width="2" opacity="0.6">
+    <path d="M-60 132 C 110 52, 300 78, 572 6"/>
+    <path d="M-60 404 C 130 340, 330 364, 572 292"/>
+  </g>
+
+  <!-- Símbolo oficial: triângulo amarelo + círculo azul -->
+  <g transform="translate(256 262)">
+    <path d="M-118 -104 L 60 0 L -118 104 Z" fill="#F9B21D"/>
+    <circle cx="14" cy="0" r="92" fill="#2B2A9E"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(256 432)" text-anchor="middle" font-family="Poppins, Montserrat, 'Helvetica Neue', Arial, sans-serif">
+    <text font-size="56" font-weight="700" fill="#111133" letter-spacing="-1">egoverna</text>
+  </g>
+</svg>

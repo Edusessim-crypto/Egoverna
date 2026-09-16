@@ -29,8 +29,8 @@ export function Ecosystem() {
               text={
                 <>
                   <span className="block font-medium text-ink-700">
-                    A eGoverna conecta diferentes áreas da administração
-                    municipal em um único ecossistema digital.
+                    O eGoverna é um software que conecta diferentes áreas da
+                    administração municipal em um único ecossistema digital.
                   </span>
                   <span className="mt-4 block">
                     Finanças, tributos, educação, recursos humanos, saúde,

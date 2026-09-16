@@ -18,7 +18,7 @@ const manrope = Manrope({
 
 const title = "eGoverna — Ecossistema inteligente para a gestão pública";
 const description =
-  "Tecnologia para todas as áreas da administração municipal. A eGoverna conecta tributos, finanças, RH, educação, saúde, dados e serviços ao cidadão em um único ecossistema integrado.";
+  "Tecnologia para todas as áreas da administração municipal. O eGoverna conecta tributos, finanças, RH, educação, saúde, dados e serviços ao cidadão em um único ecossistema integrado.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

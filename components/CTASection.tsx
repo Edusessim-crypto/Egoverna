@@ -19,7 +19,20 @@ export function CTASection() {
               aria-hidden="true"
               className="absolute inset-0 grid-lines opacity-50"
             />
-            <Symbol sizes="420px" className="pointer-events-none absolute -bottom-16 -right-12 h-auto w-[340px] opacity-[0.12] md:w-[420px]" />
+            {/* Composição gráfica da marca: o símbolo fica inteiro e centrado
+                dentro de um disco, em vez de cortado na borda do card. */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute right-[6%] top-1/2 hidden aspect-square w-[260px] -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] lg:flex xl:w-[300px]"
+            >
+              <span className="absolute inset-[14%] rounded-full border border-white/10" />
+              {/* O símbolo é mais largo à esquerda (a seta), então o
+                  deslocamento negativo o deixa opticamente centrado no disco. */}
+              <Symbol
+                sizes="180px"
+                className="h-auto w-[46%] -translate-x-[3%] object-contain opacity-90"
+              />
+            </div>
 
             <div className="relative max-w-[42rem]">
               <h2 className="text-[clamp(1.75rem,4vw,3rem)] font-extrabold leading-[1.1] text-white">

@@ -1,9 +1,8 @@
-import { ScanLine, Database, ArrowUpRight, type LucideIcon } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { products } from "@/lib/site";
-
-const iconMap: Record<string, LucideIcon> = { ScanLine, Database };
 
 export function ProductShowcase() {
   return (
@@ -15,9 +14,8 @@ export function ProductShowcase() {
           text="Produtos criados para necessidades específicas da administração municipal, mantendo a mesma linguagem, integração e segurança da plataforma eGoverna."
         />
 
-        <div className="mt-14 grid items-stretch gap-5 lg:grid-cols-2">
+        <div className="mt-14 grid items-stretch gap-5 lg:grid-cols-2 xl:grid-cols-3">
           {products.map((product, i) => {
-            const Icon = iconMap[product.icon];
             return (
               <Reveal key={product.id} delay={i * 110} className="h-full">
                 <article className="group relative h-full overflow-hidden rounded-[28px] border border-ink-100 bg-paper p-8 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-brand-200 hover:shadow-[0_26px_54px_-32px_rgba(16,16,52,0.4)] sm:p-10">
@@ -28,11 +26,16 @@ export function ProductShowcase() {
                   />
 
                   <div className="relative flex items-start justify-between gap-4">
-                    <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-brand-700 text-white">
-                      <Icon
+                    {/* Ícone oficial publicado nas lojas de aplicativos */}
+                    <span className="inline-flex size-14 items-center justify-center overflow-hidden rounded-[14px] border border-ink-100 bg-white shadow-[0_8px_20px_-12px_rgba(16,16,52,0.45)]">
+                      <Image
+                        src={product.appIcon}
+                        alt=""
                         aria-hidden="true"
-                        className="size-[22px]"
-                        strokeWidth={1.75}
+                        width={512}
+                        height={512}
+                        sizes="56px"
+                        className="size-full object-cover"
                       />
                     </span>
                     <ArrowUpRight
