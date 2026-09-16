@@ -298,7 +298,7 @@ export const platformHighlights = [
   "Soluções escaláveis",
   "Atualizações contínuas",
   "Integração entre módulos",
-  "Migração de dados com segurança",
+  "Migração segura de dados",
 ] as const;
 
 /* -------------------------------------------------------------------------- */
