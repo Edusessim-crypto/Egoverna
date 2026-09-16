@@ -9,8 +9,8 @@ import {
   HandHeart,
   ChartNoAxesCombined,
   Database,
-  Map as MapIcon,
-  Globe,
+  MapPin,
+  UserRound,
   BrainCircuit,
   type LucideIcon,
 } from "lucide-react";
@@ -41,8 +41,8 @@ const areas: Area[] = [
   { icon: HandHeart, label: "Assistência", ring: "outer" },
   { icon: ChartNoAxesCombined, label: "Dados", ring: "outer" },
   { icon: Database, label: "SDI", ring: "outer" },
-  { icon: MapIcon, label: "Geo", ring: "outer" },
-  { icon: Globe, label: "Cidadão", ring: "outer" },
+  { icon: MapPin, label: "Geo", ring: "outer" },
+  { icon: UserRound, label: "Cidadão", ring: "outer" },
 ];
 
 const inner = areas.filter((a) => a.ring === "inner");

@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Ecosystem } from "@/components/Ecosystem";
 import { PlatformShowcase } from "@/components/PlatformShowcase";
+import { IsaSection } from "@/components/IsaSection";
 import { ModuleNavigator } from "@/components/ModuleNavigator";
 import { ProductShowcase } from "@/components/ProductShowcase";
 import { BenefitsSection } from "@/components/BenefitsSection";
@@ -18,6 +19,7 @@ export default function Home() {
         <Hero />
         <Ecosystem />
         <PlatformShowcase />
+        <IsaSection />
         <ModuleNavigator />
         <ProductShowcase />
         <BenefitsSection />

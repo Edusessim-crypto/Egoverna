@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Vídeo oficial da cidade se construindo (asset original do site da eGoverna).
+ * Vídeo oficial da cidade se construindo (asset original do site do eGoverna).
  *
  * Performance: o poster é a imagem do LCP e carrega imediatamente; o vídeo só
  * é anexado ao DOM após a montagem, para não competir com o conteúdo crítico.

@@ -14,7 +14,7 @@ export default function PoliticaDePrivacidade() {
   return (
     <LegalLayout title="Política de Privacidade" updatedAt="setembro de 2026">
       <p>
-        Esta política descreve como a {site.name} trata os dados pessoais
+        Esta política descreve como o {site.name} trata os dados pessoais
         informados por meio deste site, em conformidade com a Lei nº 13.709/2018
         (Lei Geral de Proteção de Dados Pessoais — LGPD).
       </p>

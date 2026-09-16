@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 /**
- * Logo oficial da eGoverna.
+ * Logo oficial do eGoverna.
  * Os arquivos vêm de /public/logos, originados da pasta /Logos do projeto.
  * A marca nunca é recriada em CSS ou texto — apenas o asset oficial é exibido,
  * sempre com proporção preservada.

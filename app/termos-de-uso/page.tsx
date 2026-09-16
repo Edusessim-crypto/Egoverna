@@ -5,7 +5,7 @@ import { site, whatsappUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Termos de Uso",
   description:
-    "Condições de utilização do site institucional da eGoverna e do conteúdo nele publicado.",
+    "Condições de utilização do site institucional do eGoverna e do conteúdo nele publicado.",
   alternates: { canonical: "/termos-de-uso" },
   robots: { index: true, follow: true },
 };
@@ -14,7 +14,7 @@ export default function TermosDeUso() {
   return (
     <LegalLayout title="Termos de Uso" updatedAt="setembro de 2026">
       <p>
-        Estes termos regulam o acesso e a utilização do site institucional da{" "}
+        Estes termos regulam o acesso e a utilização do site institucional do{" "}
         {site.name}. Ao navegar por este site, você declara estar de acordo com
         as condições descritas abaixo.
       </p>
@@ -22,14 +22,14 @@ export default function TermosDeUso() {
       <h2>Finalidade do site</h2>
       <p>
         Este site tem caráter informativo e institucional. Seu objetivo é
-        apresentar as soluções da {site.name} para a gestão pública municipal e
-        possibilitar o contato com nossa equipe comercial.
+        apresentar o {site.name} e suas soluções para a gestão pública municipal
+        e possibilitar o contato com nossa equipe comercial.
       </p>
 
       <h2>Conteúdo e propriedade intelectual</h2>
       <p>
         Todo o conteúdo publicado neste site — incluindo textos, imagens, vídeos,
-        marcas, logotipos, layout e código — é de titularidade da {site.name} ou
+        marcas, logotipos, layout e código — é de titularidade do {site.name} ou
         de seus licenciantes, sendo protegido pela legislação de propriedade
         intelectual. A reprodução, distribuição ou modificação sem autorização
         prévia e por escrito é vedada.
@@ -56,7 +56,7 @@ export default function TermosDeUso() {
 
       <h2>Links para terceiros</h2>
       <p>
-        Este site pode conter links para serviços de terceiros. A {site.name}{" "}
+        Este site pode conter links para serviços de terceiros. O {site.name}{" "}
         não se responsabiliza pelo conteúdo, pelas políticas ou pelas práticas
         desses serviços.
       </p>
