@@ -320,6 +320,8 @@ export const products = [
     ],
     icon: "Layers",
     appIcon: "/images/apps/egoverna.svg",
+    apple: "https://apps.apple.com/br/app/e-governa/id6793134850",
+    play: "https://play.google.com/store/apps/details?id=br.com.libresolucoes.egoverna&hl=pt_BR",
   },
   {
     id: "einventario",
@@ -335,6 +337,8 @@ export const products = [
     ],
     icon: "ScanLine",
     appIcon: "/images/apps/einventario.png",
+    apple: "https://apps.apple.com/br/app/e-invent%C3%A1rio/id6802792411",
+    play: "https://play.google.com/store/apps/details?id=br.com.libresolucoes.einventario2&hl=pt_BR",
   },
   {
     id: "sdi",
@@ -350,6 +354,8 @@ export const products = [
     ],
     icon: "Database",
     appIcon: "/images/apps/sdi.png",
+    apple: "https://apps.apple.com/br/app/sistema-digital-de-informa%C3%A7%C3%B5es/id6800324618",
+    play: "https://play.google.com/store/apps/details?id=br.com.libresolucoes.sdi&hl=pt_BR",
   },
 ] as const;
 

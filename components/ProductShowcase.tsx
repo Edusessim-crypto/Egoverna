@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { StoreBadges } from "@/components/StoreBadges";
 import { Reveal } from "@/components/ui/Reveal";
 import { products } from "@/lib/site";
 
@@ -18,7 +19,7 @@ export function ProductShowcase() {
           {products.map((product, i) => {
             return (
               <Reveal key={product.id} delay={i * 110} className="h-full">
-                <article className="group relative h-full overflow-hidden rounded-[28px] border border-ink-100 bg-paper p-8 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-brand-200 hover:shadow-[0_26px_54px_-32px_rgba(16,16,52,0.4)] sm:p-10">
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-ink-100 bg-paper p-8 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-brand-200 hover:shadow-[0_26px_54px_-32px_rgba(16,16,52,0.4)] sm:p-10">
                   {/* Malha técnica no canto — linguagem visual do ecossistema */}
                   <div
                     aria-hidden="true"
@@ -71,6 +72,13 @@ export function ProductShowcase() {
                       </li>
                     ))}
                   </ul>
+
+                  <StoreBadges
+                    product={product.name}
+                    apple={product.apple}
+                    play={product.play}
+                    className="relative mt-auto pt-8"
+                  />
                 </article>
               </Reveal>
             );

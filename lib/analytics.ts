@@ -15,7 +15,8 @@ export type AnalyticsEvent =
   | "module_view"
   | "whatsapp_click"
   | "phone_click"
-  | "email_click";
+  | "email_click"
+  | "app_download";
 
 type Params = Record<string, string | number | boolean | undefined>;
 
