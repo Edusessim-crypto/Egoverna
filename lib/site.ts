@@ -75,7 +75,7 @@ export const modules: SiteModule[] = [
     icon: "Landmark",
     headline: "Gestão tributária inteligente para municípios modernos.",
     description:
-      "O módulo Tributário do eGoverna oferece controle das receitas municipais, auxiliando na fiscalização, no atendimento ao contribuinte e na gestão da arrecadação.",
+      "O módulo Tributário do eGoverna oferece controle das receitas municipais, auxiliando na fiscalização, no incremento da arrecadação, no atendimento ao contribuinte e na gestão da arrecadação.",
     features: [
       "Cadastro imobiliário e econômico",
       "Lançamento e arrecadação",
@@ -90,7 +90,7 @@ export const modules: SiteModule[] = [
     icon: "FileText",
     headline: "Fiscalização mais ágil e arrecadação inteligente.",
     description:
-      "O módulo Nota Fiscal Eletrônica simplifica a emissão, o controle e a auditoria de notas fiscais de serviço, com integração direta ao módulo tributário.",
+      "O módulo Nota Fiscal Eletrônica simplifica a emissão, o controle e a auditoria de notas fiscais de serviço, com integração ao sistema de nota nacional.",
     features: [
       "Emissão simplificada",
       "Painel em tempo real",
@@ -100,11 +100,11 @@ export const modules: SiteModule[] = [
   },
   {
     id: "financeiro-contabil",
-    name: "Financeiro e Contábil",
+    name: "Financeiro",
     icon: "Calculator",
     headline: "Gestão orçamentária e contábil com transparência total.",
     description:
-      "Controle completo das receitas e despesas públicas, simplificando prestações de contas e o acompanhamento da execução orçamentária.",
+      "Controle completo das receitas e despesas públicas, simplificando a prestação de contas através de integração com os órgãos fiscalizadores. Sempre em dia com os prazos!",
     features: [
       "Planejamento orçamentário",
       "Controle de empenhos",
@@ -118,7 +118,7 @@ export const modules: SiteModule[] = [
     icon: "Users",
     headline: "Gestão de pessoas com eficiência e conformidade legal.",
     description:
-      "Centralize servidores, folha de pagamento, benefícios e obrigações legais com segurança, rapidez e transparência.",
+      "Centralize servidores, folha de pagamento, benefícios e obrigações legais com segurança, rapidez e transparência. eSocial e obrigações sempre em dia!",
     features: [
       "Folha automatizada",
       "Frequência e férias",
@@ -130,9 +130,9 @@ export const modules: SiteModule[] = [
     id: "patrimonial-licitacoes",
     name: "Patrimonial e Licitações",
     icon: "Boxes",
-    headline: "Controle patrimonial e processos de compra em um só lugar.",
+    headline: "Controle patrimonial e processos de compras em um só lugar.",
     description:
-      "Integra bens, estoques, veículos e compras públicas, garantindo eficiência, rastreabilidade e conformidade.",
+      "Integra os bens através de RFID, controle dos estoques, controle dos veículos e controle das compras públicas, garantindo eficiência, rastreabilidade e legalidade. Descomplica os processos licitatórios gerando agilidade nos procedimentos!",
     features: [
       "Bens móveis e imóveis",
       "Almoxarifado e frota",
@@ -146,7 +146,7 @@ export const modules: SiteModule[] = [
     icon: "GraduationCap",
     headline: "Tecnologia para uma educação pública conectada e eficiente.",
     description:
-      "Controle total da secretaria e das escolas, desde matrícula até avaliação dos alunos, com integração entre gestores e professores.",
+      "Controle total da secretaria e das escolas, desde a matrícula até a avaliação dos alunos, com integração entre gestores, professores e comunidade escolar.",
     features: [
       "Matrícula online",
       "Portal do aluno",
@@ -160,7 +160,7 @@ export const modules: SiteModule[] = [
     icon: "HeartPulse",
     headline: "Gestão eficiente das unidades e programas de saúde pública.",
     description:
-      "Integra atendimento básico e especializado com dashboards, relatórios inteligentes e visão completa da rede municipal.",
+      "Integra todos os tipos de atendimentos com procedimentos ágeis e integrados aos faturamentos, gerando segurança e garantia de recursos.",
     features: [
       "Unidades de saúde",
       "Agendamento",
@@ -202,7 +202,7 @@ export const modules: SiteModule[] = [
     icon: "Database",
     headline: "Centralização e organização inteligente das informações municipais.",
     description:
-      "O Sistema Digital de Informações integra dados de diferentes setores, garantindo acesso rápido, seguro e estruturado às informações estratégicas da gestão pública.",
+      "O Sistema Digital de Informações controla todos os processos internos e externos em um único lugar. Integrado ao gov.br, tornando o município 100% digital.",
     features: [
       "Centralização de dados",
       "Gestão documental",
@@ -216,7 +216,7 @@ export const modules: SiteModule[] = [
     icon: "Map",
     headline: "Geoprocessamento para gestão territorial precisa.",
     description:
-      "Visualize informações do município em mapas inteligentes, integrando dados fiscais, urbanos e patrimoniais.",
+      "Visualize informações do município em mapas inteligentes, gerando justiça fiscal e incremento de arrecadação.",
     features: [
       "Mapas inteligentes",
       "Cadastro territorial",
@@ -230,7 +230,7 @@ export const modules: SiteModule[] = [
     icon: "Globe",
     headline: "Serviços públicos digitais ao alcance do cidadão.",
     description:
-      "Facilite o acesso a serviços, solicitações, documentos e informações públicas através de portais modernos e integrados.",
+      "Facilite o acesso a serviços, solicitações, documentos e informações públicas através de portais modernos e intuitivos.",
     features: [
       "Atendimento online",
       "Serviços digitais",
